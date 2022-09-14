@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator - Using JS</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 12;
+    }
+
+    body {
+        background: linear-gradient(45deg, rgb(0, 89, 255), rgb(168, 118, 255));
+        height: 100vh;
+    }
+
+
+    #Contnr {
+        display: flex;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.237);
+        border: 2px solid red;
+        width: 50%;
+        height: auto;
+        margin: auto;
+        margin-top: 2rem;
+        border: 2px solid black;
+        border-radius: 10px;
+        flex-direction: column;
+    }
+
+    #Contnr>div {
+        width: auto;
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        flex-wrap: wrap;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    #Contnr>div>input {
+        width: 20rem;
+        height: 2rem;
+        border-radius: 10px;
+        border: 2px solid rgb(125, 125, 125);
+        outline: none;
+        background-color: rgb(255, 255, 255);
+        margin: 0rem 0.5rem;
+        margin-top: 2rem;
+        padding: 0.1rem 0.5rem;
+        -moz-appearance: textfield;
+    }
+
+    #Contnr>h1 {
+        color: white;
+        font: caption;
+        font-size: 1.8rem;
+        width: auto;
+        height: auto;
+        padding: 0;
+        font-weight: 700;
+        margin: 0.5rem 0rem;
+        text-transform: uppercase;
+        margin-top: 2rem;
+    }
+
+    #Contnr>p {
+        color: rgb(220, 220, 220);
+        font: caption;
+        font-size: 1rem;
+        width: 90%;
+        height: auto;
+        text-align: center;
+    }
+
+    #submitBTN {
+        border: 2px solid greenyellow;
+        border-radius: 5px;
+        background-color: rgb(100, 166, 0);
+        height: auto;
+        width: auto;
+        font: caption;
+        font-size: 1.2em;
+        padding: 0.5rem 1rem;
+        color: white;
+        margin: 2rem 0rem;
+
+    }
+
+    #Contnr>div>p {
+        color: white;
+        font: caption;
+
+    }
+
+    #dgts {
+        color: white;
+        font: caption;
+    }
+
+    #arlt {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font: caption;
+        color: white;
+        background-color: rgba(255, 90, 90, 0.689);
+        width: 100%;
+        height: 5rem;
+        position: fixed;
+        bottom: 0rem;
+        transition: 0.5s;
+        opacity: 0;
+    }
+
+    @media screen and (max-width: 900px) {
+        #Contnr {
+            width: 70%;
+        }
+    }
+
+    @media screen and (max-width: 550px) {
+        #Contnr {
+            width: 95%;
+        }
+    }
+
+    @media screen and (max-width: 375px) {
+        body {
+            width: 375px;
+        }
+    }
+</style>
+
+<body>
+    <div id="Contnr">
+        <h1>Multiplication</h1>
+        <p>Sometimes some calculators show the result with 'e'. which is beyond our comprehension. So, here you can
+            easily calculate long multiplication by entering values in both the given fields. </p>
+        <div>
+            <input type="number" placeholder="Value 1" id="Val1">
+            <input type="number" placeholder="Value 2" id="Val2">
+        </div>
+        <button id="submitBTN">Fast Calculate</button>
+        <div>
+            <p>Digits:</p>
+            <p id="dgts"></p>
+        </div>
+        <div>
+            <p>Result:</p>
+            <p id="Rslt"></p>
+        </div>
+    </div>
+    <div id="arlt">
+        <p>Can't Calculate. Product is greater than 20 digits long.</p>
+    </div>
+</body>
+<script>
+    let val1 = document.getElementById("Val1");
+    let val2 = document.getElementById("Val2");
+    let submitBTN = document.getElementById("submitBTN");
+    let Rslt = document.getElementById("Rslt");
+    let arlt = document.getElementById("arlt");
+    let dgts = document.getElementById("dgts");
+
+    submitBTN.addEventListener("click", () => {
+        let rslt1 = val1.value * val2.value;
+        if (rslt1.toString().length < 21) {
+            Rslt.innerText = rslt1;
+            dgts.innerText = rslt1.toString().length;
+        } else {
+            arlt.style.opacity = "1";
+            setTimeout(() => {
+                arlt.style.opacity = "0";
+            }, 5000)
+        }
+
+    });
+
+
+</script>
+
+</html>
